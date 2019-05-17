@@ -1,6 +1,0 @@
-﻿  main.cpp
-c:\users\carol\desktop\sistemasolar\sistemasolar\main.cpp(56): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\carol\desktop\sistemasolar\sistemasolar\main.cpp(59): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\carol\desktop\sistemasolar\sistemasolar\main.cpp(130): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\carol\desktop\sistemasolar\sistemasolar\main.cpp(468): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
-  SistemaSolar.vcxproj -> C:\Users\carol\Desktop\SistemaSolar\Debug\SistemaSolar.exe
