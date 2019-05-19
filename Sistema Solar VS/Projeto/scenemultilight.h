@@ -27,6 +27,8 @@ public:
 
     SceneMultiLight();
 
+	static void keyfunc(GLFWwindow*, int, int, int, int);
+
     void initScene();
     void update( float t );
     void render();

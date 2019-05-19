@@ -1,6 +1,6 @@
 #include "scene.h"
 #include "scenerunner.h"
-#include "scenemultilight.h"
+//#include "scenemultilight.h"
 #define GLEW_STATIC
 
 

@@ -2,6 +2,8 @@
 #include "scene.h"
 #include <GLFW/glfw3.h>
 #include "glutils.h"
+#include "scenemultilight.h"
+#include <iostream>
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
@@ -67,6 +69,8 @@ public:
         scene.initScene();
         scene.resize(fbw, fbh);
 
+		glfwSetKeyCallback(window, SceneMultiLight::keyfunc);
+
         // Enter the main loop
         mainLoop(window, scene);
 
@@ -113,3 +117,8 @@ private:
         }
     }
 };
+
+void  SceneMultiLight::keyfunc(GLFWwindow* window, int key, int scancode, int action, int mods) {
+	if (key == GLFW_KEY_SPACE)
+		std::cout << "Espaço pressionado" << std::endl;
+}
