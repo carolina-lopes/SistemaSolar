@@ -19,9 +19,9 @@ private:
     Plane plane;
     std::unique_ptr<ObjMesh> sun, mercury, venus, earth , mars, jupiter, saturn, uranus, neptune;
 
-	GLubyte* texSun, * texMerc;
+	GLubyte *texSun, *texMerc, *texVenu, *texEart, *texMars, *texJupi, *texSatu, *texUran, *texNept  ;
 
-	GLint sSun, tSun;
+	GLint sSun, tSun, sMerc, tMerc, sVenu, tVenu, sEart, tEart, sMars, tMars, sJupi, tJupi, sSatu, tSatu, sUran, tUran, sNept, tNept;
 
     void setMatrices();
     void compileAndLinkShader();
