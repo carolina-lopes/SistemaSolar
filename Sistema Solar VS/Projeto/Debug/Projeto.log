@@ -1,5 +1,10 @@
-﻿  main.cpp
-  scenemultilight.cpp
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  scenemultilight.cpp
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(103): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(114): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(125): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(137): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(148): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(159): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Projeto.vcxproj -> C:\Users\carol\Desktop\Projeto\Debug\Projeto.exe

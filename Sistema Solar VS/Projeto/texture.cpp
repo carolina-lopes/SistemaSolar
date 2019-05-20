@@ -4,9 +4,9 @@
 #include "stb\stb_image.h"
 
 /*static*/
-GLuint Texture::loadTexture( const std::string & fName ) {
-    int width, height;
-    unsigned char * data = Texture::loadPixels(fName, width, height);
+GLuint Texture::loadTexture( GLubyte* data , int width, int height) {
+    //int width, height;
+    //unsigned char * data = Texture::loadPixels(fName, width, height);
 
     if( data != nullptr ) {
         GLuint tex;

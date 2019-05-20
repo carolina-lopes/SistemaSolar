@@ -23,8 +23,12 @@ SceneMultiLight::SceneMultiLight() :
 	plane(10.0f, 10.0f, 10, 0)
 {
 
-	sun = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Sun\\Sun.obj", true);
+	sun = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Sun\\Sun.obj", true); 
+	texSun = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_sun.jpg", sSun, tSun);
+
 	mercury = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Mercury\\Mercury.obj", true);
+	texMerc = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_mercury.jpg");
+
 	venus = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Venus\\Venus.obj", true);
 	earth = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Earth\\Earth.obj", true);
 	mars = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Mars\\Mars.obj", true);
@@ -50,7 +54,7 @@ void SceneMultiLight::initScene()
 
 void SceneMultiLight::update( float t )
 {
-	
+
 }
 
 void SceneMultiLight::render()
@@ -71,40 +75,59 @@ void SceneMultiLight::render()
 	model = mat4(1.0f);
 	model = glm::translate(model, vec3(.0f, .0f, 0.0f));
 	model = glm::scale(glm::mat4(1.f), glm::vec3(0.1f, 0.1f, 0.1f));
-	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_sun.jpg");
+	Texture::loadTexture(texSun, sSun, tSun);
 	setMatrices();
 	sun->render();
 
-	model = mat4(1.0f);
-	model = glm::translate(model, vec3(0.f, 0.f, 57.9f));//mudar o valor 15.f para um valor á escala (fazer com todos os outros translate )
+	MercuryAngle += MercurySpeed;
+	while (MercuryAngle > 360.0)
+		MercuryAngle -= 360.0;
+	float temp1Angle = (MercuryAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp1Angle) * 57.9f, 0.f, cos(temp1Angle) * 57.9f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
-	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_mercury.jpg");
+	Texture::loadTexture(texMerc);
 	setMatrices();
 	mercury->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 108.2f));
+	VenusAngle += VenusSpeed;
+	while (VenusAngle > 360.0)
+		VenusAngle -= 360.0;
+	float temp2Angle = (VenusAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp2Angle) * 108.2f, 0.f, cos(temp2Angle) * 108.2f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 18.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_venus.jpg");
 	setMatrices();
 	venus->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 149.6f));
+	EarthAngle += EarthSpeed;
+	while (EarthAngle > 360.0)
+		EarthAngle -= 360.0;
+	float temp3Angle = (EarthAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp3Angle) * 149.6f, 0.f, cos(temp3Angle) * 149.6f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.003f, 0.003f, 0.003f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_earth_daymap.jpg");
 	setMatrices();
 	earth->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 227.9f));
+	MarsAngle += MarsSpeed;
+	while (MarsAngle > 360.0)
+		MarsAngle -= 360.0;
+	float temp4Angle = (MarsAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp4Angle) * 227.9f, 0.f, cos(temp4Angle) * 227.9f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_mars.jpg");
 	setMatrices();
 	mars->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 778.3f));
+	JupiterAngle += JupiterSpeed;
+	while (JupiterAngle > 360.0)
+		JupiterAngle -= 360.0;
+	float temp5Angle = (JupiterAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp5Angle) * 778.3f, 0.f, cos(temp5Angle) * 778.3f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 17.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_jupiter.jpg");
@@ -112,23 +135,35 @@ void SceneMultiLight::render()
 	jupiter->render();
 
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 1427.f));
+	SaturnAngle += SaturnSpeed;
+	while (SaturnAngle > 360.0)
+		SaturnAngle -= 360.0;
+	float temp6Angle = (SaturnAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp6Angle) * 1427.f, 0.f, cos(temp6Angle) * 1427.f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.03f, 0.03f, 0.03f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_saturn.jpg");
 	setMatrices();
 	saturn->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 2871.f));
+	UranosAngle += UranosSpeed;
+	while (UranosAngle > 360.0)
+		UranosAngle -= 360.0;
+	float temp7Angle = (UranosAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp7Angle) * 2871.f, 0.f, cos(temp7Angle) * 2871.f));
 	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 15.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.03f, 0.03f, 0.03f));
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_uranus.jpg");
 	setMatrices();
 	uranus->render();
 
-	model = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 4497.f));
-	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 15.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // REVER
-	model = glm::scale(model, glm::vec3(0.03f, 0.03f, 0.03f));											   /// REVER
+	NeptuneAngle += NeptuneSpeed;
+	while (NeptuneAngle > 360.0)
+		NeptuneAngle -= 360.0;
+	float temp8Angle = (NeptuneAngle / 180.0) * 3.14159;
+	model = glm::translate(glm::mat4(1.f), glm::vec3(sin(temp8Angle) * 4497.f, 0.f, cos(temp8Angle) * 4497.f));
+	model = glm::rotate(model, glm::radians((GLfloat)glfwGetTime() * 15.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+	model = glm::scale(model, glm::vec3(0.03f, 0.03f, 0.03f));											   
 	Texture::loadTexture("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_neptune.jpg");
 	setMatrices();
 	neptune->render();
@@ -141,7 +176,7 @@ void SceneMultiLight::setMatrices()
     mat4 mv = view * model;
     prog.setUniform("ModelViewMatrix", mv);
     prog.setUniform("NormalMatrix",
-                    glm::mat3( vec3(mv[0]), vec3(mv[1]), vec3(mv[2]) ));
+                    glm::mat3( vec3(mv[0]), vec3(mv[1]), vec3(mv[2])));
     prog.setUniform("MVP", projection * mv);
 }
 
