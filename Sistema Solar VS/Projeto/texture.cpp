@@ -9,7 +9,9 @@ GLuint Texture::loadTexture( GLubyte* data , int width, int height) {
     //unsigned char * data = Texture::loadPixels(fName, width, height);
 
     if( data != nullptr ) {
-        GLuint tex;
+        
+		GLuint tex;
+
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D, tex);
         glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, width, height);
@@ -18,7 +20,7 @@ GLuint Texture::loadTexture( GLubyte* data , int width, int height) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-        stbi_image_free(data);
+  
         return tex;
     }
 
