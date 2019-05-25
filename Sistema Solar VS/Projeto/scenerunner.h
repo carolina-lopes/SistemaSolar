@@ -68,7 +68,7 @@ public:
         scene.setDimensions(fbw, fbh);
         scene.initScene();
         scene.resize(fbw, fbh);
-
+	
 		glfwSetKeyCallback(window, SceneMultiLight::keyfunc);
 
         // Enter the main loop
@@ -118,7 +118,12 @@ private:
     }
 };
 
+
+
 void  SceneMultiLight::keyfunc(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	if (key == GLFW_KEY_SPACE)
-		std::cout << "Espaço pressionado" << std::endl;
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+		SceneMultiLight::paused = !SceneMultiLight::paused;
+		std::cout << "Pressed";
+	}
+
 }
