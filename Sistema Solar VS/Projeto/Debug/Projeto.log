@@ -1,10 +1,23 @@
-﻿  scenemultilight.cpp
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(103): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(114): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(125): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(137): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(148): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(159): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  glad.cpp
+  glslprogram.cpp
+  glutils.cpp
+  main.cpp
+  objmesh.cpp
+C:\Users\carol\Desktop\Projeto\Projeto\objmesh.cpp(149,39): warning C4018:  '<': signed/unsigned mismatch
+  plane.cpp
+  scenemultilight.cpp
+C:\Users\carol\Desktop\Projeto\Projeto\objmesh.cpp(169,23): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(103,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(115,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(127,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(138,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(149,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(161,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(172,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+  sphere.cpp
+  texture.cpp
+  trianglemesh.cpp
+  Generating Code...
+C:\Users\carol\Desktop\Projeto\Projeto\scenemultilight.cpp(184,19): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Projeto.vcxproj -> C:\Users\carol\Desktop\Projeto\Debug\Projeto.exe
