@@ -55,6 +55,10 @@ public:
 
 	GLuint textL;
 	static bool paused;
+	static GLfloat eyex, eyez, eyey;
+	static GLfloat upx, upz;
+	static GLfloat camx, camz;
+	static float orthovalue;
 
 	SceneMultiLight();
 

@@ -17,6 +17,10 @@ using glm::vec3;
 using glm::mat4;
 
 bool SceneMultiLight::paused = false;
+GLfloat SceneMultiLight::eyex = 150.0f, SceneMultiLight::eyez = -150.0f, SceneMultiLight::eyey=50.0f;
+GLfloat SceneMultiLight::upx = 0.0f, SceneMultiLight::upz = 0.0f;
+GLfloat SceneMultiLight::camx = .0f, SceneMultiLight::camz = 10.0f;
+float SceneMultiLight::orthovalue = 80.0f;
 
 
 SceneMultiLight::SceneMultiLight()
@@ -63,7 +67,7 @@ void SceneMultiLight::initScene()
 	compileAndLinkShader();
 	glEnable(GL_DEPTH_TEST);
 
-	view = glm::lookAt(vec3(150.f, 50.f, -150.f), vec3(0.0f, 0.0f, 10.0f), vec3(0.0f, 1.0f, 0.0f));
+	view = glm::lookAt(vec3(eyex, eyey, eyez), vec3(0.0f, 0.0f, 10.0f), vec3(0.0f, 1.0f, 0.0f));
 	projection = mat4(1.0f);
 	prog.setUniform("Light.Intensity", vec3(1.0f, 1.0f, 1.0f));
 	glGenTextures(1, &textL);
@@ -77,6 +81,8 @@ void SceneMultiLight::update(float t)
 
 void SceneMultiLight::render()
 {
+	
+	view = glm::lookAt(vec3(eyex, 50.f, eyez), vec3(camx, 0.0f, camz), vec3(upx, 1.0f, upz));
 
 	if (SceneMultiLight::paused == false) {
 
@@ -195,7 +201,7 @@ void SceneMultiLight::render()
 
 void SceneMultiLight::setMatrices()
 {
-	mat4 mv = view * model;
+	mat4 mv = view * model;//* glm::ortho(-orthovalue, orthovalue, -orthovalue, orthovalue, -orthovalue, orthovalue);
 	prog.setUniform("ModelViewMatrix", mv);
 	prog.setUniform("NormalMatrix",
 		glm::mat3(vec3(mv[0]), vec3(mv[1]), vec3(mv[2])));

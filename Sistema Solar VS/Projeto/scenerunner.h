@@ -123,7 +123,23 @@ private:
 void  SceneMultiLight::keyfunc(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
 		SceneMultiLight::paused = !SceneMultiLight::paused;
-		std::cout << "Pressed";
+		
+	}
+
+	else if (key == GLFW_KEY_UP)
+		camx -= 20.f;
+	else if (key == GLFW_KEY_DOWN)
+		camx += 20.f;
+	else if (key == GLFW_KEY_RIGHT)
+		camz -= 20.f;
+	else if (key == GLFW_KEY_LEFT)
+		camz += 20.f;
+
+	else if (key == GLFW_KEY_ENTER) {
+		double x, y;
+		glfwGetCursorPos(window, &x, &y);
+		camx = x;
+		camz = y;
 	}
 
 }
