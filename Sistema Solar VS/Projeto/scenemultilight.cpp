@@ -17,14 +17,36 @@ using glm::vec3;
 using glm::mat4;
 
 bool SceneMultiLight::paused = false;
+bool SceneMultiLight::checksun = false;
+bool SceneMultiLight::checkmerc = false;
+bool SceneMultiLight::checkvenus = false;
+bool SceneMultiLight::checkearth = false;
+bool SceneMultiLight::checkmars = false;
+bool SceneMultiLight::checkjup = false;
+bool SceneMultiLight::checksat = false;
+bool SceneMultiLight::checkurn = false;
+bool SceneMultiLight::checknep = false;
+
 GLfloat SceneMultiLight::eyex = 150.0f, SceneMultiLight::eyez = -150.0f, SceneMultiLight::eyey=50.0f;
 GLfloat SceneMultiLight::upx = 0.0f, SceneMultiLight::upz = 0.0f;
 GLfloat SceneMultiLight::camx = .0f, SceneMultiLight::camz = 10.0f;
 float SceneMultiLight::orthovalue = 80.0f;
 
 
-SceneMultiLight::SceneMultiLight()
+SceneMultiLight::SceneMultiLight():
+	plane(50.f, 50.0f, 10.0f, 10.0f)
 {
+
+	infoSun = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_sun.png", sinfo, tinfo);
+	infoMerc = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_mercury.png", msinfo, mtinfo);
+	infoVen = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_venus.png", vsinfo, vtinfo);
+	infoEarth = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_earth.png", esinfo, etinfo);
+	infoMars = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_mars.png", masinfo, matinfo);
+	infoJup  = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_jupiter.png", jsinfo, jtinfo);
+    infoSat =Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_saturn.png", ssinfo, stinfo);
+	infoUr = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_uranos.png", usinfo, utinfo);
+	infoNep = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\info_neptune.png", nsinfo, ntinfo);
+
 
 	sun = ObjMesh::load("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\objects\\Sun\\Sun.obj", true);
 	texSun = Texture::loadPixels("C:\\Users\\carol\\Desktop\\Projeto\\Projeto\\Texturas\\2k_sun.jpg", sSun, tSun);
@@ -64,7 +86,9 @@ SceneMultiLight::SceneMultiLight()
 
 void SceneMultiLight::initScene()
 {
-	compileAndLinkShader();
+	compileAndLinkShader(prog, "shader/multilight.vert", "shader/multilight.frag");
+	
+
 	glEnable(GL_DEPTH_TEST);
 
 	view = glm::lookAt(vec3(eyex, eyey, eyez), vec3(0.0f, 0.0f, 10.0f), vec3(0.0f, 1.0f, 0.0f));
@@ -81,21 +105,121 @@ void SceneMultiLight::update(float t)
 
 void SceneMultiLight::render()
 {
-	
-	view = glm::lookAt(vec3(eyex, 50.f, eyez), vec3(camx, 0.0f, camz), vec3(upx, 1.0f, upz));
 
 	if (SceneMultiLight::paused == false) {
-
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		glClearColor(0.f, 0.f, 0.f, 0.f);
 
-
+		view = glm::lookAt(vec3(eyex, 0.f, eyez), vec3(camx, 0.0f, camz), vec3(upx, 1.0f, upz));
 		prog.setUniform("Light.Position", glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 		prog.setUniform("Material.Kd", 1.f, 1.f, 1.f);
 		prog.setUniform("Material.Ks", 1.f, 1.f, 1.f);
 		prog.setUniform("Material.Ka", 0.1f, 0.1f, 0.1f);
 		prog.setUniform("Material.Shininess", 100.0f);
+
+		if (SceneMultiLight::checksun) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 13.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoSun, sinfo, tinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checkmerc) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 12.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoMerc, msinfo, mtinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checkvenus) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 11.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoVen, vsinfo, vtinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checkearth) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 11.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoEarth, esinfo, etinfo);
+			setMatrices();
+			plane.render();
+		}
+
+
+		if (SceneMultiLight::checkmars) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 10.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoMars, msinfo, mtinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checkjup) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 10.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoJup, jsinfo, jtinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checksat) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 10.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoSat, ssinfo, stinfo);
+			setMatrices();
+			plane.render();
+		}
+
+		if (SceneMultiLight::checkurn) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 10.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoUr, usinfo, utinfo);
+			setMatrices();
+			plane.render();
+		}
+
+
+		if (SceneMultiLight::checknep) {
+			eyex = 150;
+			eyez = -150;
+			model = glm::translate(glm::mat4(1.f), glm::vec3(100.f, 10.f, -128.f));
+			model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(45.f), glm::vec3(0.f, 0.f, 1.f));
+			textureLoad(infoNep, nsinfo, ntinfo);
+			setMatrices();
+			plane.render();
+		}
+
+
+
 
 		model = mat4(1.0f);
 		model = glm::translate(model, vec3(.0f, .0f, 0.0f));
@@ -196,7 +320,7 @@ void SceneMultiLight::render()
 		setMatrices();
 		neptune->render();
 	}
-
+	
 }
 
 void SceneMultiLight::setMatrices()
@@ -216,11 +340,11 @@ void SceneMultiLight::resize(int w, int h)
 	projection = glm::perspective(glm::radians(70.0f), (float)w / h, 0.1f, 10000.0f);
 }
 
-void SceneMultiLight::compileAndLinkShader()
+void SceneMultiLight::compileAndLinkShader(GLSLProgram &prog, const char* vertex, const char* fragment)
 {
 	try {
-		prog.compileShader("shader/multilight.vert");
-		prog.compileShader("shader/multilight.frag");
+		prog.compileShader(vertex);
+		prog.compileShader(fragment);
 		prog.link();
 		prog.use();
 	}

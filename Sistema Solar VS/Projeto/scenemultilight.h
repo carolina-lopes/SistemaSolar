@@ -14,16 +14,23 @@
 class SceneMultiLight : public Scene
 {
 private:
+	Plane plane;
+
 	GLSLProgram prog;
+
+	GLuint graphicPositionID, vertexBuffer;
+
 	std::unique_ptr<ObjMesh> sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune;
 
 	GLubyte* texSun, * texMerc, * texVenu, * texEart, * texMars, * texJupi, * texSatu, * texUran, * texNept;
+	GLubyte* infoSun, *infoMerc,*infoVen, *infoEarth, *infoMars, *infoJup, *infoSat, *infoUr, *infoNep;
 
 	GLint sSun, tSun, sMerc, tMerc, sVenu, tVenu, sEart, tEart, sMars, tMars, sJupi, tJupi, sSatu, tSatu, sUran, tUran, sNept, tNept;
+	GLint  sinfo, tinfo, msinfo, mtinfo, vsinfo, vtinfo, esinfo, etinfo, masinfo, matinfo, jsinfo, jtinfo, ssinfo, stinfo, usinfo, utinfo, nsinfo, ntinfo;
 
 
 	void setMatrices();
-	void compileAndLinkShader();
+	void compileAndLinkShader(GLSLProgram&, const char*, const char*);
 
 	GLfloat MercuryAngle = 6.34f;
 	GLfloat MercurySpeed = 4.74f;
@@ -54,7 +61,7 @@ private:
 public:
 
 	GLuint textL;
-	static bool paused;
+	static bool paused, checksun, checkmerc, checkvenus, checkearth, checkmars, checkjup, checksat, checkurn, checknep;
 	static GLfloat eyex, eyez, eyey;
 	static GLfloat upx, upz;
 	static GLfloat camx, camz;

@@ -25,11 +25,11 @@ Plane::Plane(float xsize, float zsize, int xdivs, int zdivs, float smax, float t
         z = iFactor * i - z2;
         for( int j = 0; j <= xdivs; j++ ) {
             x = jFactor * j - x2;
-            p[vidx] = x;
-            p[vidx+1] = 0.0f;
+            p[vidx] = 0.f;
+            p[vidx+1] = x;
             p[vidx+2] = z;
-			n[vidx] = 0.0f;
-			n[vidx+1] = 1.0f;
+			n[vidx] = 1.f;
+			n[vidx+1] = .0f;
 			n[vidx+2] = 0.0f;
 
             tex[tidx] = j * texi;

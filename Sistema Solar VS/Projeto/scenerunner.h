@@ -123,23 +123,57 @@ private:
 void  SceneMultiLight::keyfunc(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
 		SceneMultiLight::paused = !SceneMultiLight::paused;
+
+	}
+
+	else if (key == GLFW_KEY_DOWN) {
+		if(eyex<=1500.0f)
+			eyex += 20.f;
+	}
 		
+	else if (key == GLFW_KEY_UP) {
+		if(eyex>=0.0f)
+			eyex -= 20.f;
 	}
-
-	else if (key == GLFW_KEY_UP)
-		camx -= 20.f;
-	else if (key == GLFW_KEY_DOWN)
-		camx += 20.f;
+		
+	else if (key == GLFW_KEY_LEFT) {
+		if(eyez<=150.0f)
+			eyez += 20.f;
+	}
+		
 	else if (key == GLFW_KEY_RIGHT)
-		camz -= 20.f;
-	else if (key == GLFW_KEY_LEFT)
-		camz += 20.f;
-
-	else if (key == GLFW_KEY_ENTER) {
-		double x, y;
-		glfwGetCursorPos(window, &x, &y);
-		camx = x;
-		camz = y;
+	{
+		if(eyez<=-150.0f)
+			eyez -= 20.f;
 	}
+		
+
+	else if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
+		SceneMultiLight::checksun = !SceneMultiLight::checksun;
+
+	else if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		SceneMultiLight::checkmerc = !SceneMultiLight::checkmerc;
+
+	else if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		SceneMultiLight::checkvenus = !SceneMultiLight::checkvenus;
+
+	else if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		SceneMultiLight::checkearth = !SceneMultiLight::checkearth;
+
+	else if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		SceneMultiLight::checkmars = !SceneMultiLight::checkmars;
+
+	else if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		SceneMultiLight::checkjup = !SceneMultiLight::checkjup;
+
+	else if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+		SceneMultiLight::checksat = !SceneMultiLight::checksat;
+
+	else if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
+		SceneMultiLight::checkurn = !SceneMultiLight::checkurn;
+
+	else if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+		SceneMultiLight::checknep = !SceneMultiLight::checknep;
+
 
 }
